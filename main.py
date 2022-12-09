@@ -1,7 +1,6 @@
 from dotenv import load_dotenv
 from asyncChatGPT.asyncChatGPT import Chatbot
 import discord
-import requests
 import os
 
 load_dotenv()
@@ -39,7 +38,6 @@ async def getAIMessage(message):
     response = await chatbot.get_chat_response(message, output="text")
     responseMessage = response['message']
     return responseMessage
-
 
 
 @client.event
@@ -83,7 +81,6 @@ async def on_message(message):
     else:
         response = await getAIMessage(messageWithoutPing(message))
         await message.channel.send(response, reference=message)
-
 
 
 client.run(os.getenv('TOKEN'))
